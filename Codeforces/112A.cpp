@@ -1,6 +1,12 @@
+/*
+	author: KRHero
+	IDE: DevCPP		
+*/
+
 #include <bits/stdc++.h>
 
 #define ll long long int
+#define ull unsigned long long int
 #define MOD 1000000007
 #define f(i,a,b) for(int i=a;i<b;i++)
 #define fe(i,a,b) for(int i=a;i<=b;i++)
@@ -8,9 +14,9 @@
 #define fde(i,a,b) for(int i=b;i>=a;i--)
 #define fastio cin.tie(0);cout.tie(0);ios_base::sync_with_stdio(false);
 #define debug(x) cout << '>' << #x << ':' << x << endl;
-#define max(x,y) (x>y)?x:y
-#define min(x,y) (x<y)?x:y
-#define mid(s,e) (s+(e-s)/2)
+#define MAX(x,y) (x>y)?x:y
+#define MIN(x,y) (x<y)?x:y
+#define MID(s,e) (s+(e-s)/2)
 #define whilet() int t; scanf("%d",&t); while(t--)
 #define F first
 #define S second
@@ -21,41 +27,33 @@
 
 using namespace std;
 void solve(){
-	string x;
-	cin >> x;
-	vector <int> pos;
-	f(i,0,x.size()){
-		if(x[i]=='a' || x[i]=='e' ||x[i]=='y' || x[i]=='Y'|| x[i]=='i' || x[i]=='o' || x[i]=='u'|| x[i]=='A' || x[i]=='E' || x[i]=='I' || x[i]=='O' || x[i]=='U'){
-			x[i]='1';
-		}else{
-			if((int)x[i]>=65 && (int)x[i]<=90){
-				x[i]=(char)((int)x[i]+32);
-			}
-			pos.pb(i);
-		}
-		
+	string x,y;
+	cin >> x >> y;
+	ll size=x.size();
+	ll size1=y.size();
+	f(i,0,size){
+		if(x[i]>=65 && x[i]<=90)
+			x[i]+=32;
 	}
-	ll j=0;
-	f(i,0,x.size()){
-		if(j<pos.size()){
-			if(pos[j]==i){
-				cout<<".";
-				i--;
-				j++;
-				continue;
-			}
-		}
-		
-		if(x[i]=='1')
-			continue;
-		cout<<x[i];
-	}
-	cout<<endl;
 	
+	f(i,0,size1){
+		if(y[i]>=65 && y[i]<=90)
+			y[i]+=32;
+	}
+	ll min=MIN(size,size1);
+	f(i,0,min){
+		if(x[i]<y[i]){
+			cout<<-1<<endl;
+			return;
+		}else if(x[i]>y[i]){
+			cout<<1<<endl;
+			return;
+		}
+	}
+	cout<<0<<endl;
 	
 	
 }
 int main(){
-	solve();		
-	
+	solve();
 }
