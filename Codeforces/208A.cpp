@@ -27,19 +27,44 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
 	string x;
 	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
+	ll size=x.size();
+	
+	f(i,0,size){
+			if(x.substr(i,3)=="WUB"){	
+				x[i]='1';
+				x[i+1]='1';
+				if(i+5<size-5){
+					if(x.substr(i+3,3)=="WUB"){
+						x[i+2]='1';
+					}else{
+						x[i+2]=' ';
+					}
+				}else{
+					x[i+2]=' ';
+				}		
+				i+=2;
+			}		
+	}
+	ll pass=0;
+	f(i,0,size){
+		if(x[i]=='1'){
+			
+		}else{
+			if(pass==0 && x[i]==' '){
+				
+			}
+			else{
+				cout<<x[i];
+				pass=1;
+				
 			}
 		}
 	}
-	cout<<x<<endl;
+	cout<<endl;
+	return;
+	
 	
 	
 }

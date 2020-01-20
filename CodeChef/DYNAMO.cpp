@@ -27,23 +27,19 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
-	}
-	cout<<x<<endl;
-	
-	
+	ll n,a,b,d,x;
+	cin >> n >> a;
+	ull temp = pow(10,n);
+	ull ans = 2*temp+a;
+	cout<<ans<<endl;
+	cin >> b;
+	cout<<temp-b<<endl;
+	cin >> d;
+	cout<<temp-d<<endl;
+	cin>>x;
 }
 int main(){
-	solve();		
-	
+	whilet(){
+		solve();
+	}
 }

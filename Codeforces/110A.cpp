@@ -27,19 +27,21 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
 	string x;
 	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
+	ll pass=0;
+	f(i,0,x.size()){
+		if(x[i]=='4' || x[i]=='7'){
+			pass++;
 		}
 	}
-	cout<<x<<endl;
+	if(pass==4 || pass==7){
+		cout<<"YES"<<endl;
+		return;
+	}
+	cout<<"NO"<<endl;
+	return;
+	
 	
 	
 }

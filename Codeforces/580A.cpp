@@ -27,23 +27,31 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
+	ll n;
+	cin >> n;
+	ll ans=0,temp=0;
+	ll p,q;
+	f(i,0,n){
+		if(i==0){
+			temp=1;
+			cin >> p;
+			q=p;
+			continue;
 		}
+		p=q;
+		cin  >> q;
+		if(q<p){
+			ans=max(ans,temp);
+			temp=1;
+			p=q;			
+		}else
+			temp++;
 	}
-	cout<<x<<endl;
-	
+	ans=max(ans,temp);
+	cout<<ans<<endl;
 	
 }
-int main(){
+int main(){	
 	solve();		
 	
 }

@@ -27,19 +27,26 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
+	ll n,p,q,x;
+	cin >> n >> p;
+	unordered_map<ll,ll> umap;
+	f(i,0,p){
+		cin >> x;
+		umap[x]=1;
+	}
+	cin >> q;
+	f(i,0,q){
+		cin >> x;
+		umap[x]=1;
+	}
+	f(i,1,n+1){
+		if(umap[i]==0){
+			cout<<"Oh, my keyboard!"<<endl;
+			return;
 		}
 	}
-	cout<<x<<endl;
+	cout<<"I become the guy."<<endl;
+	return;
 	
 	
 }

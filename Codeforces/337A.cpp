@@ -27,19 +27,21 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
+	ll n,m,x;
+	vector <ll> arr;
+	cin >> n >> m;
+	f(i,0,m){
+		cin >> x;
+		arr.pb(x);
 	}
-	cout<<x<<endl;
+	sort(arr.begin(),arr.end());
+	ll ans=INT_MAX;
+	fe(i,0,m-n){
+		ans=MIN(ans,arr[i+n-1]-arr[i]);
+	}
+	cout<<ans<<endl;
+	return;
+	
 	
 	
 }

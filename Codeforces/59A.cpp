@@ -27,19 +27,24 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
 	string x;
 	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
+	ll up=0,down=0;
+	f(i,0,x.size()){
+		if(x[i]>=65 && x[i]<=90) up++;
+		else down++;
+	}
+	if(up>down){
+		f(i,0,x.size()){
+			if(x[i]>90) x[i]-=32;
+		}
+	}else{
+		f(i,0,x.size()){
+			if(x[i]<=90) x[i]+=32;
 		}
 	}
 	cout<<x<<endl;
+	return;
 	
 	
 }

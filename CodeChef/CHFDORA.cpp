@@ -27,23 +27,36 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
+	ll n,m;
+	int x;
+	scanf("%ld %ld",&n,&m);
+	vector<vector<int>> arr(n);
+	f(i,0,n){
+		f(j,0,m){
+			scanf("%d",&x);
+			arr[i].pb(x);
 		}
 	}
-	cout<<x<<endl;
+	ll ans=0,p,len,temp;
+	f(i,0,n){
+		f(j,0,m){
+			p = 1;
+			
+			while(i-p>=0 && i+p<n  && (j-p>=0 && j+p<m) &&  (arr[i-p][j]==arr[i+p][j]) && arr[i][j-p]==arr[i][j+p]){
+				p++;
+			}
+			ans+= p;			
+		}
+	}
+	printf("%ld \n",ans);
+
+	
+	
 	
 	
 }
 int main(){
-	solve();		
-	
+	whilet(){
+		solve();		
+	}
 }

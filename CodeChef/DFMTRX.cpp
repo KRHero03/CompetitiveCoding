@@ -26,24 +26,50 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
+	ll n;
+	cin >> n;
+	if(n==1){
+		cout<<"Hooray\n1"<<endl;
+		return;
 	}
-	cout<<x<<endl;
+	if(n%2!=0){
+		cout<<"Boo"<<endl;
+		return;
+	}
+	int ans[n][n];
+	ans[0][0]=1;
+	int i=1;
+	while(i<n){
+		f(j,0,i){
+			f(k,0,i){				
+				ans[j+i][k+i] = ans[j][k];
+				if(j==k){
+					ans[j+i][j] = 2*i;
+				}else{					
+					ans[j+i][k] = ans[j][k]+2*i;
+				}				
+				ans[j][k+i] = ans[j][k]+2*i;
+			}			
+		}
+		i*=2;
+	}
+	cout<<"Hooray"<<endl;
+	f(i,0,n){
+		f(j,0,n){
+			cout<<ans[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	return;
+	
+	
 	
 	
 }
 int main(){
-	solve();		
-	
+	whilet(){
+		solve();		
+	}
 }

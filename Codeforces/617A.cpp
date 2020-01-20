@@ -27,23 +27,17 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
-	}
-	cout<<x<<endl;
+	ll n;
+	cin >> n;
+	ll ans=n/5;
+	if(n%5!=0)
+		ans++;
+	cout<<ans<<endl;
 	
 	
 }
 int main(){
+	
 	solve();		
 	
 }

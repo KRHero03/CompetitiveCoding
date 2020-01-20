@@ -27,19 +27,14 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
+	string x,y;
+	cin >> x >> y;
+	f(i,0,x.size()){
+		if((x[i]=='1' && y[i]=='1') || (x[i]=='0' && y[i]=='0')) cout<<'0';
+		else cout<<'1';
 	}
-	cout<<x<<endl;
+	return;
+	
 	
 	
 }

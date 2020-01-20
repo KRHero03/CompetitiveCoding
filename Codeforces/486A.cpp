@@ -27,23 +27,18 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
+	ll n;
+	cin >> n;
+	if(n%2==0){
+		cout<<n/2<<endl;
+	}else{
+		cout<<n/2-n<<endl;
 	}
-	cout<<x<<endl;
+	return;
+	
 	
 	
 }
 int main(){
-	solve();		
-	
+	solve();
 }

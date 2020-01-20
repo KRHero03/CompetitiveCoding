@@ -27,19 +27,26 @@
 
 using namespace std;
 void solve(){
-	ll n,t;
-	cin >> n >> t;
-	string x;
-	cin >> x;
-	while(t--){
-		f(i,0,x.size()-1){
-			if(x[i]=='B' && x[i+1]=='G'){
-				swap(x[i],x[i+1]);
-				i++;
-			}
-		}
+	ll x,y,z;
+	cin >> x >> y >> z;
+	if(x==1 && z==1){
+		cout<<x+y+z<<endl;
+		return;
 	}
-	cout<<x<<endl;
+	if(x==1){
+		cout<<(x+y)*z<<endl;
+		return;
+	}else if(z==1){
+		cout<<x*(y+z)<<endl;
+		return;
+	}else if(y==1){
+		ll ans=(x*(y+z)>(x+y)*z)?(x*(y+z)):((x+y)*z);
+		cout<<ans<<endl;
+		return;
+	}
+	cout<<x*y*z<<endl;
+	return;
+	
 	
 	
 }
