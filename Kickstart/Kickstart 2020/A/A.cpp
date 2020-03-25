@@ -26,44 +26,30 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
-void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+
+void solve(ll t){
+	ll n,b,temp;
+	cin >> n >> b;
+	vector <ll> arr;
+	f(i,0,n){
+		cin >> temp;
+		arr.pb(temp);
 	}
-	cout<<"YES"<<endl;
-	
+	sort(arr.begin(),arr.end());
+	f(i,1,n){
+		arr[i]+=arr[i-1];
+	}
+	ll ans = lower_bound(arr.begin(),arr.end(),b+1)-arr.begin();
+	cout<<"Case #"<<t<<": "<<ans<<endl;
 	
 }
 int main(){
-	whilet(){
-		solve();			
+	int t;
+	cin >> t;
+	ll q=1;
+	while(q<=t){
+		solve(q);
+		q++;			
 	}	
 	
 }

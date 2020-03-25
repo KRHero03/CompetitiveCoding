@@ -26,46 +26,54 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+	ll n,m,k,temp,temp1;
+	cin >> n >> m >> k;
+	string s="";
+	ll ans=0;
+	vector <pair<ll,ll>> initial,final;
+	f(i,0,k){
+		cin >> temp >> temp1;
+		initial.pb(mp(temp,temp1));
 	}
-	cout<<"YES"<<endl;
-	
-	
+	f(i,0,k){
+		cin >> temp >> temp1;
+		final.pb(mp(temp,temp1));
+	}
+    f(i,0,m-1){
+        s+='L';
+        ans++;
+    }
+    f(i,0,n-1){
+        s+='U';
+        ans++;
+    }
+    f(i,0,n){
+        if(i%2==0){
+            f(j,0,m-1){
+                s+='R';
+                ans++;
+            }
+            if(i<n-1){
+				s+='D';
+	            ans++;
+			}
+        }else{
+            f(j,0,m-1){
+                s+='L';
+                ans++;
+            }
+            if(i<n-1){
+				s+='D';
+	            ans++;
+			}
+        }
+    }
+    cout<<ans<<endl<<s<<endl;
 }
-int main(){
-	whilet(){
-		solve();			
-	}	
-	
+int main(){	
+	solve();	
 }
 
 

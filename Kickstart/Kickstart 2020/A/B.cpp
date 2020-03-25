@@ -26,44 +26,41 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
-void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+ll a[2002][2002],dp[2002][2002];
+void solve(){    
+  ll n,m,p;
+  cin>>n>>m>>p;
+  fe(i,1,n)
+    fe(j,1,m){
+        cin>>a[i][j];
+        a[i][j]+=a[i][j-1];
 	}
-	cout<<"YES"<<endl;
-	
-	
+  memset(dp,-1,sizeof dp);
+  fe(i,0,n)
+  	dp[i][0]=0;
+  fe(i,1,n){
+    fe(j,1,p){
+      fe(k,0,min((ll)j,m)){
+      	if(dp[i-1][j-k]!=-1){
+	        dp[i][j] = max(dp[i][j],dp[i-1][j-k]+a[i][k]);
+	      }
+	  }
+	      
+    }
+  }
+  cout<<dp[n][p]<<endl;
+ 
 }
 int main(){
-	whilet(){
-		solve();			
+	//freopen("input.txt","r",stdin);
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+	ll t;
+	cin >> t;
+	ll q=1;
+	while(q<=t){
+		cout<<"Case #"<<q<<": ";
+		solve();
+		q++;			
 	}	
 	
 }

@@ -7,7 +7,7 @@
 
 #define ll long long int
 #define ull unsigned long long int
-#define MOD 1000000007
+#define MOD 998244353
 #define f(i,a,b) for(int i=a;i<b;i++)
 #define fe(i,a,b) for(int i=a;i<=b;i++)
 #define fd(i,a,b) for(int i=b;i>a;i--)
@@ -26,45 +26,38 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
 	ll n,k;
 	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
+	vector <ll> p(n);
+	for(ll& x: p) cin >> x;
+	vector <ll> arr;
+	f(i,0,n){
+		if(p[i]>n-k){
+			arr.pb(i);
 		}
 	}
-	cout<<"YES"<<endl;
+	
+	ll ans = 0;
+	ans = ((n*(n+1))/2) - (((n-k)*(n-k+1))/2);
+	ll ans1 = 1;
+	ll size = arr.size();
+	for(int i = size;i>=1;i--){		
+		arr[i] = arr[i] - arr[i-1];
+	}
+	f(i,1,size){
+		
+		ans1 = (ans1%MOD * (arr[i]%MOD)%MOD)%MOD;
+	}
+	cout<<ans<<" "<<ans1<<endl;
 	
 	
 }
 int main(){
-	whilet(){
-		solve();			
-	}	
+	
+	solve();			
+
 	
 }
 

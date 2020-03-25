@@ -26,45 +26,48 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
-	ll n,k;
+	ll n,k,temp;
 	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+	vector<ll> arr;
+	f(i,0,n){
+		cin >> temp;
+		arr.pb(temp);
 	}
-	cout<<"YES"<<endl;
 	
+	multiset<ll,greater<ll>> diff;
+	f(i,1,n){
+		diff.insert(arr[i]-arr[i-1]);
+	}
+	
+	f(j,0,k){
+		auto iterator = diff.begin();
+		ll val = *iterator;
+		if(val==1) break;
+		diff.insert((ll)ceil((double)val/2.0));
+		diff.insert((ll)floor((double)val/2.0));
+		diff.erase(diff.find(val));
+		cout<<val<<endl;
+	}
+	auto iterator = diff.begin();
+	ll val = *iterator;
+	cout<<val;
+	
+	cout<<endl;
 	
 }
 int main(){
-	whilet(){
-		solve();			
-	}	
+	//freopen("input.txt","r",stdin);
+	int t;
+	cin >> t;
+	int q=1;
+	while(q<=t){
+		cout<<"Case #"<<q<<": ";
+		solve();
+		q++;
+	}		
+	
 	
 }
 

@@ -27,37 +27,43 @@
 
 using namespace std;
 void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+	ll n;
+	cin >> n;
+	vector<ll> arr;
+	while(n>0){
+		ll q = n/3;
+		ll r = n - q*3;
+		arr.pb(r);
+		n/=3;
 	}
-	cout<<"YES"<<endl;
+	f(i,0,arr.size()){
+		if(i==arr.size()-1){
+			if(arr[i]>1){
+				arr[i]=0;
+				arr.pb(1);
+				fe(j,0,i){
+					arr[j]=0;
+				}
+			}
+			break;
+		}
+		if(arr[i]>1){
+			fe(j,0,i){
+				arr[j]=0;
+			}
+			arr[i+1]++;
+		}
+		
+	}
+	ll ans = 0;
+	ll temp = 1;
+	f(i,0,arr.size()){
+		ans+= arr[i]*temp;
+		temp*=3;
+	}
+	cout<<ans<<endl;
+	return;
+	
 	
 	
 }

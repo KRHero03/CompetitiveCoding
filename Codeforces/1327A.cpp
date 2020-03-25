@@ -26,44 +26,52 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
 	ll n,k;
 	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
+	if(n%2==k%2){
+		ll tp = floor(log2(n));
+		if(k<=tp){
+			cout<<"YES"<<endl;
+			return;
 		}
 	}
-	cout<<"YES"<<endl;
-	
-	
+	cout<<"NO"<<endl;
+	return;
+}
+
+void solve1(){
+	ll n,k;
+	cin >> n >> k;
+	if(n%2==0){
+		if(k%2!=0){
+			cout<<"NO"<<endl;
+			return;
+		}
+		if(k*k<=n){
+			cout<<"YES"<<endl;
+			return;
+		}
+		cout<<"NO"<<endl;
+		return;
+	}else{
+		if(k%2==0){
+			cout<<"NO"<<endl;
+			return;
+		}
+		if(k*k<=n){
+			cout<<"YES"<<endl;
+			return;
+		}
+		cout<<"NO"<<endl;
+		return;
+	}
 }
 int main(){
+	
 	whilet(){
-		solve();			
+		solve1();			
 	}	
 	
 }

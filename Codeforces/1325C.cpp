@@ -26,45 +26,50 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+
 void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
+	ll n,m,temp,temp1;
+	cin >> n;
+	vector <vector<pair<ll,ll>>> edge(n);
+	ll ans[n-1];
+	f(i,0,n-1) ans[i] = -1;
+	f(i,0,n-1){
+		cin >> temp >> temp1;
+		temp--;
+		temp1--;
+		edge[temp].pb(mp(temp1,i));
+		edge[temp1].pb(mp(temp,i));
+	}
+	ll pass=1,r;
+	f(i,0,n){
+		if(edge[i].size()>2){
+			pass=0;
+			r = i;
+			break;
 		}
 	}
-	cout<<"YES"<<endl;
-	
-	
+	if(pass==1){
+		f(i,0,n-1) cout<<i<<endl;
+		return;
+	}
+	ll p = 0;
+	for(pair<ll,ll> e:edge[r]){
+		ans[e.S] = p;
+		p++;
+	}
+	f(i,0,n-1){
+		if(ans[i]==-1){
+			ans[i] = p;
+			p++;
+		}
+	}
+	f(i,0,n-1) cout<<ans[i]<<endl;
+	return;
 }
 int main(){
-	whilet(){
-		solve();			
-	}	
+	
+	solve();			
+		
 	
 }
 

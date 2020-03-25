@@ -26,45 +26,60 @@
 #define PI 3.1415926535897932384626433832
 
 using namespace std;
+ll isSet(ll x,ll y){
+	if(x & (1<<y)) return 1;
+	return 0;
+}
 void solve(){
-	ll n,k;
-	cin >> n >> k;
-	vector <ll> arr(n);
-	for(ll& x: arr) cin >> x;
-	
-	unordered_map<ll,ll> umap;
-	for(auto i: arr){
-		ll count=0;
-		while(i>0){
-			ll p = i/k;
-			ll c = i-p*k;
-			if(c==0) {
-				i/=k;
-				count++;
-				continue;
-			}
-			if(umap.find(count)!=umap.end()){
-				cout<<"NO"<<endl;
-				return;
-			}else{
-				if(c!=1){
-					cout<<"NO"<<endl;
-					return;
-				}
-				umap[count]++;
-			}
-			i/=k;
-			count++;
-		}
+	ll u,v,temp;
+	cin >> u >> v;
+	ull power[64];
+	power[0]=1;
+	f(i,1,64){
+		power[i] = 2*power[i-1];
 	}
-	cout<<"YES"<<endl;
+	if(u==v && u==0){
+		cout<<0<<endl;
+		return;
+	}
+	if(u==v){
+		cout<<1<<endl<<u<<endl;
+		return;
+	}
+	if(u>v){
+		cout<<-1<<endl;
+		return;
+	}
+	if(abs(u-v)%2!=0){
+		cout<<-1<<endl;
+		return;
+	}
+	temp = (ll)(v-u)>>1;
+	/*ll req=0;
 	
+	for(int i=62;i>=0;i--){
+		ll isSetd = isSet(u,i);
+		
+		if(!(isSet(u,i))){
+			if((ll)power[i+1]<=temp){
+				debug(i);
+				req += power[i];
+				temp-= power[i+1];
+			}
+		}
+	}*/
+	if(temp + (temp^u) == v){
+		cout<<2<<endl<<temp<<" "<<(temp^u)<<endl;
+		return;
+	}
+	temp = (v-u)/2;
+	cout<<3<<endl<<u<<" "<<temp<<" "<<temp<<endl;
 	
+	return;
 }
 int main(){
-	whilet(){
-		solve();			
-	}	
+	solve();			
+
 	
 }
 
