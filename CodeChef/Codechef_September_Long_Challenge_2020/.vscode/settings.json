@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "cmath": "cpp",
+        "ostream": "cpp",
+        "complex": "cpp"
+    },
+    "codesnap.backgroundColor": "Transparent",
+    "codesnap.containerPadding": "0em",
+    "codesnap.target": "window",
+    "codesnap.transparentBackground": true
+}
